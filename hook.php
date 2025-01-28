@@ -54,6 +54,10 @@ function plugin_ticketfilteredpage_redefine_menus($menu)
    if (empty($menu)) {
       return $menu;
    }
+   $user_groups = Group_User::getUserGroups(Session::getLoginUserID());
+   if(empty($user_groups)){
+     return $menu;
+   }
 
    $front_fields = Plugin::getPhpDir('ticketfilteredpage', false) . "/front";
    if (array_key_exists('ticketfilteredpage', $menu) === false) {
