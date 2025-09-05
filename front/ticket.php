@@ -41,14 +41,27 @@ if (Session::haveRight('entity', READ))
   return;
 }
 
-   if(isset($_GET['ticket_i_assigned']))
-   {
-     Html::helpHeader("Я исполнитель", 'ticketfilteredpage', 'ticket_i_assigned');
-   }
+    if(isset($_GET['ticket_i_assigned']))
+     {
+       if (Session::getCurrentInterface() == "helpdesk") {
+           Html::helpHeader(Ticket::getTypeName(Session::getPluralNumber()), 'ticketfilteredpage', 'ticket_i_assigned');
+       }
+        else
+       {
+          Html::header(Ticket::getTypeName(Session::getPluralNumber()), '', 'ticketfilteredpage', 'ticket_i_assigned');
+       }
+  
+     }
    if(isset($_GET['ticket_i_author']))
-   {
-     Html::helpHeader("Я автор", 'ticketfilteredpage', 'ticket_i_author');
-   }
+     {
+       if (Session::getCurrentInterface() == "helpdesk") {
+           Html::helpHeader(Ticket::getTypeName(Session::getPluralNumber()), 'ticketfilteredpage', 'ticket_i_author');
+       }
+        else
+       {
+          Html::header(Ticket::getTypeName(Session::getPluralNumber()), '', 'ticketfilteredpage', 'ticket_i_author');
+       }
+     }
 
 
 $refresh_callback = <<<JS
@@ -65,4 +78,9 @@ echo Html::manageRefreshPage(false, $refresh_callback);
 $search = new PluginTicketfilteredpageSearch();
 $search->show('Ticket');
 
-Html::footer();
+if (Session::getCurrentInterface() == "helpdesk") {
+    Html::helpFooter();
+} else {
+    Html::footer();
+}
+
