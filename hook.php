@@ -68,16 +68,16 @@ function plugin_ticketfilteredpage_redefine_menus($menu)
                'content'   => [
                  'ticket_i_assigned'=>[
                  'title'=>'Я исполнитель',
-                 'shortcut'=>'c',
-                 'page'=>"$front_fields/ticket.php?ticket_i_assigned=1",
+                 'shortcut'=>'t',
+                 'page'=>"$front_fields/ticket.php?ticket_i_assigned",
                  'lists_itemtype'=>'Ticket',
                  'icon'=>'',
                  'links'=>['lists'=>'']
                ],
                'ticket_i_author'=>[
                  'title'=>'Я автор',
-                 'shortcut'=>'d',
-                 'page'=>"$front_fields/ticket.php?ticket_i_author=1",
+                 'shortcut'=>'t',
+                 'page'=>"$front_fields/ticket.php?ticket_i_author",
                  'lists_itemtype'=>'Ticket',
                  'icon'=>'',
                  'links'=>['lists'=>'']
